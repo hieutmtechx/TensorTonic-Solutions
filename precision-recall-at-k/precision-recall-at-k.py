@@ -4,16 +4,16 @@ def precision_recall_at_k(recommended, relevant, k):
     """
     # Write code here
 
-    precision = 0
-    recall = 0
-
-    pairwise = 0
+    if (k == 0): return [0.0, 0.0]
     
+    pairwise = 0
+    relevant = set(relevant)
+    k = min(k, len(recommended))
     for _ in range(k):
         if (recommended[_] in relevant):
             pairwise += 1  
 
     print(pairwise)
     precision = pairwise / k
-    recall = pairwise / len(relevant)
+    recall = pairwise / len(relevant) if relevant else 0.0
     return [precision, recall]
