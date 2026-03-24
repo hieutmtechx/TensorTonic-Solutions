@@ -8,20 +8,12 @@ def entropy_node(y):
     # Write code here
     pass
 
-    instance_count = len(y)
+    instances= len(y)
+    if (instances == 0): return 0.0
 
-    if (instance_count == 0): return 0.0
+    unique, counts = np.unique(y, return_counts = True)
+    probs = counts / instances
     
-    classes = defaultdict(int)
-
-    for _ in range(instance_count):
-        classes[y[_]] += 1
-
-    entrophy = 0
-    for className, classPortion in classes.items():
-        classProb = classPortion / instance_count
-        entrophy = entrophy - (classProb * math.log2(classProb))
-
     # print(entrophy)
-    return entrophy
+    return -np.sum(probs * np.log2(probs))
     
