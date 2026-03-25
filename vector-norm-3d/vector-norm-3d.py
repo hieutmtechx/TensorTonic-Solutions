@@ -8,9 +8,5 @@ def vector_norm_3d(v):
     pass
 
     v = np.asarray(v)
-    if (v.ndim == 1):
-        norm = math.sqrt(np.sum(v**2))
-        return norm
-    else:
-        norm = np.sqrt(np.sum(v**2, axis = 1))
-        return norm
+    norm = math.sqrt(np.sum(v**2)) if (v.ndim == 1) else np.sqrt(np.sum(v**2, axis = 1))
+    return norm
