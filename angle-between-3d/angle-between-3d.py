@@ -14,5 +14,12 @@ def angle_between_3d(v, w):
     v = np.asarray(v)
     w = np.asarray(w)
 
-    cosPhi = np.dot(v, w) / (norm(v) * norm(w))
+    normV = norm(v)
+    normW = norm(w)
+    
+    if normV == 0 or normW == 0:
+        return np.nan
+
+    cosPhi = np.dot(v, w) / (normV * normW)
+    cosPhi = np.clip(cosPhi, -1.0, 1.0)
     return np.acos(cosPhi)
