@@ -30,10 +30,5 @@ def percentiles(x, q):
         else:
             percentiles.append(x[loL] + (L - loL) * (x[hiL] - x[loL]))
 
-        print(L, loL, hiL)
-
-    print(percentiles)
     return np.asarray(percentiles)
     
-
-percentiles([4,1,3,2], [0, 100])
