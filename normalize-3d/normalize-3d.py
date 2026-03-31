@@ -11,7 +11,7 @@ def normalize_3d(v):
 
     if (v.ndim == 1):
         norm_v = np.linalg.norm(v)
-        if (norm_v < 10**(-10)): 
+        if (norm_v < 1e-10): 
             return v
         else: 
             return v / norm_v
