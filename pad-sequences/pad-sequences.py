@@ -9,19 +9,20 @@ def pad_sequences(seqs, pad_value=0, max_len=None):
     # Your code here
     pass
 
-    max_length = 0
-    for seq in seqs: 
-        max_length = max(max_length, len(seq))
+    N = len(seqs)
 
-    max_length = max_len if (max_len is not None) else max_length
-    padded_seqs = []
-    for seq in seqs:
-        current_seq = []
-        for i in range(max_length):
-            if (i < len(seq)):
-                current_seq.append(seq[i])
-            else:
-                current_seq.append(pad_value)
-        padded_seqs.append(current_seq)
+    if (N == 0):
+        L = max_len if max_len is not None else 0
+        return np.empty((0, L)) 
+
+    L = 0
+    for seq in seqs: 
+        L = max(L, len(seq))
+    L = max_len if (max_len is not None) else L
+
+    padded_seqs = np.full((N, L), pad_value)
+    for i, seq in enumerate(seqs):
+        truncated_seq = seq[:L]
+        padded_seqs[i, :len(truncated_seq)] = truncated_seq
     
     return np.asarray(padded_seqs)
