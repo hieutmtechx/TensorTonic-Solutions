@@ -6,13 +6,11 @@ def value_iteration_step(values, transitions, rewards, gamma):
     """
     # Write code here
 
-    outputs = []
-    for s in range(len(rewards)):
-        Qvals = []
-        for a in range(len(transitions[s])):
-            transition = np.asarray(transitions[s][a], dtype = float)
-            Qval = rewards[s][a] + gamma * np.sum(transition * values)
-            Qvals.append(Qval)
-        outputs.append(np.max(Qvals))
+    value = np.asarray(values, dtype = float)
+    transition = np.asarray(transitions, dtype = float)
+    reward = np.asarray(rewards, dtype = float)
 
-    return outputs        
+    Qvals = reward + gamma * np.dot(transition, value) 
+    output = np.max(Qvals, axis = 1)
+
+    return list(output)      
