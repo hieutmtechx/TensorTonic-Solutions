@@ -7,12 +7,13 @@ def cross_entropy_loss(y_true, y_pred):
     # Write code here
     pass
 
-    ce = 0
-    N = len(y_true)
+    # y_true = np.asarray(y_true, dtype = float)
     y_pred = np.asarray(y_pred, dtype = float)
-    for i, label in enumerate(y_true):
-        ce += (-np.log(y_pred[i, label]))
-    ce /= N
 
+    N = y_pred.shape[0]
+
+    probs = y_pred[np.arange(N), y_true]
+    ce = -np.mean(np.log(probs))
+    
     return ce
     
